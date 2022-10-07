@@ -9,6 +9,9 @@ reqwest = { version = "0.11", features = ["json"] }
 tokio = { version = "1", features = ["full"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
+scraper = "0.13.0"
+jsonpath = "0.1.1"
+futures = "0.3.24"
 
 [[example]]
 name = "reqwest-get"
@@ -18,3 +21,7 @@ path = "examples/reqwest/get.rs"
 [[example]]
 name = "reqwest-post"
 path = "examples/reqwest/post.rs"
+
+[[example]]
+name = "reqwest-tieba"
+path = "examples/reqwest/tieba.rs"
