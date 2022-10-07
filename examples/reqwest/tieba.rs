@@ -28,7 +28,7 @@ async fn main()  -> Result<(),reqwest::Error> {
     let doc = Html::parse_fragment(&body);
     let selector = Selector::parse(".BDE_Image").unwrap();
     for el in doc.select(&selector) {
-        println!("img:{}",el.value().attr("src").unwrap());
+        println!("{}",el.value().attr("src").unwrap());
     }
     Ok(())
 }
