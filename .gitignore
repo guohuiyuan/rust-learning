@@ -1,3 +1,5 @@
 /target
 *.jpg
 *.txt
+/empty
+/some

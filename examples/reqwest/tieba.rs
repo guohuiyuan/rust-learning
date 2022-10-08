@@ -1,16 +1,18 @@
-use reqwest;
-use scraper::{Html, Selector};
 use anyhow::{anyhow, Result};
 use futures::stream::StreamExt;
-use std::{borrow::Cow, path::{Path, PathBuf}};
+use reqwest;
+use scraper::{Html, Selector};
+use std::fs;
+use std::{
+    borrow::Cow,
+    path::{Path, PathBuf},
+};
 use structopt::StructOpt;
 use tokio::io::AsyncBufReadExt;
 use tokio::io::BufReader;
 use tokio::{fs::OpenOptions, io::AsyncWriteExt};
-use std::fs;
 
 const TIEBA_URL: &str = "https://tieba.baidu.com/p/6105274031";
-
 
 // async fn getMaxPage(url:&str) -> Result<&str,reqwest::Error>{
 //     let resp = reqwest::get(TIEBA_URL).await?;
@@ -26,7 +28,7 @@ const TIEBA_URL: &str = "https://tieba.baidu.com/p/6105274031";
 //     Ok("1")
 // }
 #[tokio::main]
-async fn main()  -> Result<(),reqwest::Error> {
+async fn main() -> Result<(), reqwest::Error> {
     let mut paths: Vec<String> = Vec::new();
     // HTML
     let resp = reqwest::get(TIEBA_URL).await?;
@@ -40,15 +42,15 @@ async fn main()  -> Result<(),reqwest::Error> {
         paths.push(el.value().attr("src").unwrap().to_string());
     }
     let length = paths.len();
-    let fetches = futures::stream::iter(paths.into_iter().enumerate().map(|(index, url)| {
-        async move {
-            let mut response  = get(&url).await?;
+    let fetches = futures::stream::iter(paths.into_iter().enumerate().map(
+        |(index, url)| async move {
+            let mut response = get(&url).await?;
             let filename = basename(&url, '/');
             println!("[{:6}/{}] {}", index, length, filename);
             save(filename.as_ref(), &mut response).await?;
             Ok::<(), Box<dyn std::error::Error>>(())
-        }
-    }))
+        },
+    ))
     .buffered(10)
     .collect::<Vec<_>>();
     fetches.await;

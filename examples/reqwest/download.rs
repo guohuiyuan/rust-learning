@@ -1,6 +1,9 @@
 use anyhow::{anyhow, Result};
 use futures::stream::StreamExt;
-use std::{borrow::Cow, path::{Path, PathBuf}};
+use std::{
+    borrow::Cow,
+    path::{Path, PathBuf},
+};
 use structopt::StructOpt;
 use tokio::io::AsyncBufReadExt;
 use tokio::io::BufReader;
@@ -33,17 +36,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     println!("begin to download file {:?} ...", inputfile);
     let paths: Vec<String> = read_lines(inputfile).await?;
     let length = paths.len();
-    let fetches = futures::stream::iter(paths.into_iter().enumerate().map(|(index, url)| {
-        async move {
-            let mut response  = get(&url).await?;
+    let fetches = futures::stream::iter(paths.into_iter().enumerate().map(
+        |(index, url)| async move {
+            let mut response = get(&url).await?;
             let filename = basename(&url, '/');
             if debug {
                 println!("[{:6}/{}] {}", index, length, filename);
             }
             save(filename.as_ref(), &mut response).await?;
             Ok::<(), Box<dyn std::error::Error>>(())
-        }
-    }))
+        },
+    ))
     .buffered(10)
     .collect::<Vec<_>>();
     fetches.await;
@@ -69,8 +72,7 @@ async fn get(url: &str) -> Result<reqwest::Response> {
 }
 
 async fn save(filename: &str, response: &mut reqwest::Response) -> Result<()> {
-    let mut options = OpenOptions::new();
-    let mut file = options
+    let mut file = OpenOptions::new()
         .append(true)
         .create(true)
         .read(true)

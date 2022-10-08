@@ -1,13 +1,15 @@
-use std::collections::HashMap;
 use reqwest::header::HeaderMap;
 use serde_json::value::Value;
+use std::collections::HashMap;
 
-
-async fn get() -> Result<HashMap<String, String>, reqwest::Error>{
-    Ok(reqwest::get("https://httpbin.org/ip").await?.json::<HashMap<String, String>>().await?)
+async fn get() -> Result<HashMap<String, String>, reqwest::Error> {
+    Ok(reqwest::get("https://httpbin.org/ip")
+        .await?
+        .json::<HashMap<String, String>>()
+        .await?)
 }
 
-async fn post() -> Result<HashMap<String, Value>, reqwest::Error>{
+async fn post() -> Result<HashMap<String, Value>, reqwest::Error> {
     // post 请求要创建client
     let client = reqwest::Client::new();
 
@@ -21,7 +23,14 @@ async fn post() -> Result<HashMap<String, Value>, reqwest::Error>{
     data.insert("password", "https://docs.rs/serde_json/1.0.59/serde_json/");
 
     // 发起post请求并返回
-    Ok(client.post("https://httpbin.org/post").headers(headers).json(&data).send().await?.json::<HashMap<String, Value>>().await?)
+    Ok(client
+        .post("https://httpbin.org/post")
+        .headers(headers)
+        .json(&data)
+        .send()
+        .await?
+        .json::<HashMap<String, Value>>()
+        .await?)
 }
 
 #[tokio::main]
