@@ -14,6 +14,7 @@ jsonpath = "0.1.1"
 futures = "0.3.24"
 anyhow = "1.0.65"
 structopt = "0.3.26"
+axum = "0.5.16"
 
 [[example]]
 name = "reqwest-get"
@@ -32,3 +33,11 @@ path = "examples/reqwest/tieba.rs"
 [[example]]
 name = "reqwest-download"
 path = "examples/reqwest/download.rs"
+
+[[example]]
+name = "axum-helloworld"
+path = "examples/axum/helloworld.rs"
+
+[[example]]
+name = "axum-route"
+path = "examples/axum/route.rs"
