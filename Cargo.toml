@@ -16,6 +16,10 @@ anyhow = "1.0.65"
 structopt = "0.3.26"
 axum = "0.5.16"
 
+[dependencies.rusqlite]
+version = "0.28.0"
+features = ["bundled"]
+
 [[example]]
 name = "reqwest-get"
 path = "examples/reqwest/get.rs"
@@ -41,3 +45,15 @@ path = "examples/axum/helloworld.rs"
 [[example]]
 name = "axum-route"
 path = "examples/axum/route.rs"
+
+[[example]]
+name = "sqlite-create"
+path = "examples/sqlite/create.rs"
+
+[[example]]
+name = "sqlite-select"
+path = "examples/sqlite/select.rs"
+
+[[example]]
+name = "sqlite-transaction"
+path = "examples/sqlite/transaction.rs"
