@@ -71,3 +71,15 @@ path = "examples/rng/alphanumeric.rs"
 [[example]]
 name = "rng-my-gen-string"
 path = "examples/rng/my_gen_string.rs"
+
+[[example]]
+name = "vectorsort-sort"
+path = "examples/vectorsort/sort.rs"
+
+[[example]]
+name = "vectorsort-sort-by"
+path = "examples/vectorsort/sort_by.rs"
+
+[[example]]
+name = "vectorsort-struct"
+path = "examples/vectorsort/struct.rs"
