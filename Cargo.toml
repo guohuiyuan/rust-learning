@@ -15,6 +15,8 @@ futures = "0.3.24"
 anyhow = "1.0.65"
 structopt = "0.3.26"
 axum = "0.5.16"
+rand = "0.8.5"
+rand_distr = "0.4.3"
 
 [dependencies.rusqlite]
 version = "0.28.0"
@@ -57,3 +59,43 @@ path = "examples/sqlite/select.rs"
 [[example]]
 name = "sqlite-transaction"
 path = "examples/sqlite/transaction.rs"
+
+[[example]]
+name = "rng-gen"
+path = "examples/rng/gen.rs"
+
+[[example]]
+name = "rng-gen-range"
+path = "examples/rng/gen_range.rs"
+
+[[example]]
+name = "rng-uniform"
+path = "examples/rng/uniform.rs"
+
+[[example]]
+name = "rng-normal"
+path = "examples/rng/normal.rs"
+
+[[example]]
+name = "rng-point"
+path = "examples/rng/point.rs"
+
+[[example]]
+name = "rng-alphanumeric"
+path = "examples/rng/alphanumeric.rs"
+
+[[example]]
+name = "rng-my-gen-string"
+path = "examples/rng/my_gen_string.rs"
+
+[[example]]
+name = "vectorsort-sort"
+path = "examples/vectorsort/sort.rs"
+
+[[example]]
+name = "vectorsort-sort-by"
+path = "examples/vectorsort/sort_by.rs"
+
+[[example]]
+name = "vectorsort-struct"
+path = "examples/vectorsort/struct.rs"
